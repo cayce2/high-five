@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "High Five Charity - Care. Connect. Impact.",
     description: "Join us in making a difference through care, connection, and impact.",
-    images: [{ url: "/og-image.jpg" }],
+    images: "images/logo2.png"
   },
 }
 
