@@ -255,9 +255,9 @@ export default function Home() {
   <div className="absolute left-0 bottom-0 w-80 h-80 bg-orange-300 rounded-full opacity-20 blur-3xl"></div> {/* Removed negative positioning */}
   
 
-  <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center text-center relative z-10 w-full">
+  <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-center relative z-10 w-full">
     <FadeIn>
-      <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col items-center text-center">
+      <div className="md:w-6/8 mb-12 md:mb-0 flex flex-col items-center text-center">
         <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-6">
           Community Impact Platform
         </div>
@@ -297,8 +297,8 @@ export default function Home() {
 
     {/* Circular Image */}
     <FadeIn delay={300}>
-      <div className="md:w-1/2 flex justify-center">
-        <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
+      <div className="md:w-7/8 flex justify-end">
+        <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
           <Image
             src="/images/home.png"
             alt="Children learning together"
@@ -448,59 +448,60 @@ export default function Home() {
 
         {/* Volunteer Section */}
         <section id="volunteer" className="py-20 bg-gray-100 scroll-mt-24">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center">
-              <FadeIn>
-                <div className="md:w-1/2 mb-12 md:mb-0 md:pr-8">
-                  <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-4">
-                    Join Our Team
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">Volunteer With Us</h2>
-                  <p className="text-lg text-gray-700 mb-8">
-                    Make a difference by volunteering your time and skills. We have opportunities for everyone, whether you&apos;re looking to volunteer remotely or in-person across our project locations.
-                  </p>
-                  <ul className="mb-8">
-                    <li className="flex items-center mb-4">
-                      <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span>Flexible time commitments</span>
-                    </li>
-                    <li className="flex items-center mb-4">
-                      <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span>Remote and in-person opportunities</span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span>Training and support provided</span>
-                    </li>
-                  </ul>
-                  <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
-                    Apply to Volunteer
-                  </button>
-                </div>
-              </FadeIn>
-              <FadeIn delay={300}>
-              <div className="flex justify-center items-center w-full">
-                <div className="relative w-full max-w-xl h-auto rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
-                  <Image
-                    src="/images/volunteer.png"
-                    alt="Volunteers working together"
-                    width={1600}
-                    height={1600}
-                    className="w-full h-full object-cover"
-                  />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              </div>
-            </div>
-              </FadeIn>
-            </div>
+  <div className="container mx-auto px-4">
+    <div className="flex flex-col md:flex-row items-center justify-between">
+      <FadeIn>
+        <div className="md:w-6/8 mb-12 md:mb-0 flex flex-col items-center text-center">
+          <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-4">
+            Join Our Team
           </div>
-        </section>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Volunteer With Us</h2>
+          <p className="text-lg text-gray-700 mb-8">
+            Make a difference by volunteering your time and skills. We have opportunities for everyone, whether you&apos;re looking to volunteer remotely or in-person across our project locations.
+          </p>
+          <ul className="mb-8">
+            <li className="flex items-center mb-4">
+              <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Flexible time commitments</span>
+            </li>
+            <li className="flex items-center mb-4">
+              <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Remote and in-person opportunities</span>
+            </li>
+            <li className="flex items-center">
+              <svg className="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Training and support provided</span>
+            </li>
+          </ul>
+          <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+            Apply to Volunteer
+          </button>
+        </div>
+      </FadeIn>
+      
+      <FadeIn delay={300}>
+        <div className="md:w-7/8 flex justify-end">
+          <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
+            <Image
+              src="/images/volunteer.png"
+              alt="Volunteers working together"
+              width={1600}
+              height={1600}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          </div>
+        </div>
+      </FadeIn>
+    </div>
+  </div>
+</section>
 
         {/* Donation Section */}
         <section id="donate" className="py-20 scroll-mt-24">
