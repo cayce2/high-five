@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { FC, useState, useEffect } from 'react';
+import { motion } from "framer-motion";
 
 
 interface EventProps {
@@ -13,42 +14,6 @@ interface EventProps {
   location: string;
   description: string;
 }
-
-interface InstagramPostProps {
-  id: string;
-  imageUrl: string;
-  caption: string;
-  likes: number;
-  timestamp: string;
-}
-
-const InstagramPost: FC<InstagramPostProps> = ({ imageUrl, caption, likes, timestamp }) => {
-  return (
-    <div className="relative group overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-xl">
-      <div className="aspect-square bg-gray-200 overflow-hidden">
-        <Image
-          src={imageUrl}
-          alt={caption}
-          width={400}
-          height={400}
-          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-        <p className="text-white text-sm line-clamp-2 mb-2">{caption}</p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-white">
-            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-            </svg>
-            <span className="text-xs">{likes}</span>
-          </div>
-          <span className="text-white text-xs">{timestamp}</span>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const EventCard: FC<EventProps> = ({ title, date, location, description }) => {
   return (
@@ -109,7 +74,6 @@ const DonateOption: FC<DonateOptionProps> = ({ icon, title, description, buttonT
     </div>
   );
 };
-
 // Animation component for fade-in effect
 const FadeIn: FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -285,48 +249,70 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section id="hero" className="relative py-20 overflow-hidden scroll-mt-24">
-          {/* Background pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-white z-0 opacity-80"></div>
-          <div className="absolute -right-24 -top-24 w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute -left-24 bottom-0 w-80 h-80 bg-orange-300 rounded-full opacity-20 blur-3xl"></div>
+  {/* Background pattern */}
+  <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-white z-0 opacity-80"></div>
+  <div className="absolute right-0 top-0 w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl"></div> {/* Removed negative positioning */}
+  <div className="absolute left-0 bottom-0 w-80 h-80 bg-orange-300 rounded-full opacity-20 blur-3xl"></div> {/* Removed negative positioning */}
+  
 
-          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-            <FadeIn>
-              <div className="md:w-1/2 mb-12 md:mb-0 md:pr-8">
-                <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-6">
-                  Community Impact Platform
-                </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Care. Connect. <span className="text-orange-500">Impact.</span>
-                </h1>
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  The High Five Initiative is a community platform dedicated to creating meaningful social impact through various campaigns and programs across Africa.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button onClick={() => scrollToSection('volunteer')} className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
-                    Get Involved
-                  </button>
-                  <button onClick={() => scrollToSection('work')} className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50 font-medium px-8 py-3 rounded-lg transition-colors duration-300">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn delay={300}>
-              <div className="md:w-1/2">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl transform md:translate-x-8 hover:scale-105 transition-transform duration-500">
-                  <Image
-                    src="/api/placeholder/600/400"
-                    alt="Children learning together"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+  <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center text-center relative z-10 w-full">
+    <FadeIn>
+      <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col items-center text-center">
+        <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-6">
+          Community Impact Platform
+        </div>
+
+        {/* Animated Heading */}
+        <motion.h1 
+          initial={{ opacity: 0, x: -50 }} 
+          animate={{ opacity: 1, x: 0 }} 
+          transition={{ duration: 0.6, ease: "easeOut" }} 
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight w-full"
+        >
+          <span className="text-orange-500">Care.</span> 
+          <span className="mx-3">Connect.</span> 
+          <span className="text-orange-500">Impact.</span>
+        </motion.h1>
+
+        <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+          The High Five Initiative is a community platform dedicated to creating meaningful social impact through various campaigns and programs across Africa.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button 
+            onClick={() => scrollToSection('volunteer')} 
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            Get Involved
+          </button>
+          <button 
+            onClick={() => scrollToSection('work')} 
+            className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50 font-medium px-8 py-3 rounded-lg transition-colors duration-300"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </FadeIn>
+
+    {/* Circular Image */}
+    <FadeIn delay={300}>
+      <div className="md:w-1/2 flex justify-center">
+        <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
+          <Image
+            src="/images/home.png"
+            alt="Children learning together"
+            width={1500} 
+            height={800}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        </div>
+      </div>
+    </FadeIn>
+  </div>
+</section>
+
 
         {/* Our Work Section */}
         <section id="work" className="py-20 scroll-mt-24">
@@ -499,17 +485,18 @@ export default function Home() {
                 </div>
               </FadeIn>
               <FadeIn delay={300}>
-                <div className="md:w-1/2">
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                    <Image
-                      src="/api/placeholder/600/400"
-                      alt="Volunteers working together"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  </div>
-                </div>
+              <div className="flex justify-center items-center w-full">
+                <div className="relative w-full max-w-xl h-auto rounded-full overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white ring-4 ring-orange-300">
+                  <Image
+                    src="/images/volunteer.png"
+                    alt="Volunteers working together"
+                    width={1600}
+                    height={1600}
+                    className="w-full h-full object-cover"
+                  />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              </div>
+            </div>
               </FadeIn>
             </div>
           </div>
@@ -533,15 +520,14 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <FadeIn delay={100}>
-                <DonateOption
-                  icon={<svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                    <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
-                  </svg>}
-                  title="One-time Donation"
-                  description="Make a one-time donation to support our programs. Every contribution makes a difference."
-                  buttonText="Donate Now"
-                />
+              <DonateOption
+                icon={<svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H7a1 1 0 010-2h3a1 1 0 011 1v3a1 1 0 01-1 1H7a1 1 0 110-2h1.948a5.002 5.002 0 01-4.242 3.89A1 1 0 115.092 10a7.002 7.002 0 004.897-4H9a1 1 0 010-2h4a1 1 0 011 1v5a1 1 0 01-1 1h-3a1 1 0 110-2h1.723A7.002 7.002 0 015 13.071V16a1 1 0 01-1 1H3a1 1 0 01-1-1v-5a1 1 0 011-1h2a1 1 0 010 2H4.421A7.011 7.011 0 004 10.998V8H3a1 1 0 01-1-1V3a1 1 0 011-1h1z" />
+              </svg>}
+      title="Monthly Giving"
+  description="Become a monthly donor and provide sustainable support for our long-term initiatives."
+  buttonText="Give Monthly"
+/>
               </FadeIn>
 
               <FadeIn delay={200}>
@@ -567,111 +553,92 @@ export default function Home() {
               </FadeIn>
             </div>
           </div>
-        </section>
-
-        <section id="gallery" className="py-20 bg-white scroll-mt-24">
-  <div className="container mx-auto px-4">
-    <FadeIn>
-      <div className="text-center mb-16">
-        <div className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-4">
-          @highfiveinitiative
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Instagram Gallery</h2>
-        <div className="w-24 h-1 bg-orange-500 mx-auto"></div>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-6">
-          Follow our journey on Instagram and see the impact we&apos;re making across communities.
-        </p>
-      </div>
-    </FadeIn>
-
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {/* Instagram posts would be dynamically loaded here */}
-      <FadeIn delay={100}>
-        <InstagramPost
-          id="post1"
-          imageUrl="https://www.instagram.com/p/DDPbf9Io8Th/"
-          caption="Celebrating the opening of our new school in Mombasa! Thanks to all our supporters who made this possible. #EducationForAll #HighFiveInitiative"
-          likes={124}
-          timestamp="2 days ago"
-        />
-      </FadeIn>
-      <FadeIn delay={150}>
-        <InstagramPost
-          id="post2"
-          imageUrl="/api/placeholder/400/400"
-          caption="Our healthcare volunteers providing essential vaccines to children in rural communities. Every child deserves access to healthcare. #HealthForAll"
-          likes={98}
-          timestamp="4 days ago"
-        />
-      </FadeIn>
-      <FadeIn delay={200}>
-        <InstagramPost
-          id="post3"
-          imageUrl="/api/placeholder/400/400"
-          caption="Women's empowerment workshop teaching sustainable farming techniques. These skills will help build resilient communities. #WomenEmpowerment"
-          likes={156}
-          timestamp="1 week ago"
-        />
-      </FadeIn>
-      <FadeIn delay={250}>
-        <InstagramPost
-          id="post4"
-          imageUrl="/api/placeholder/400/400"
-          caption="Clean water initiative completed in Turkana County. Now over 500 families have access to clean drinking water. #WaterForLife"
-          likes={201}
-          timestamp="1 week ago"
-        />
-      </FadeIn>
-      <FadeIn delay={300}>
-        <InstagramPost
-          id="post5"
-          imageUrl="/api/placeholder/400/400"
-          caption="Youth leadership program graduation ceremony. These young leaders are ready to make a difference in their communities! #YouthLeaders"
-          likes={87}
-          timestamp="2 weeks ago"
-        />
-      </FadeIn>
-      <FadeIn delay={350}>
-        <InstagramPost
-          id="post6"
-          imageUrl="/api/placeholder/400/400"
-          caption="Building playgrounds for children in underserved areas. Play is an essential part of childhood development. #PlayMatters"
-          likes={112}
-          timestamp="2 weeks ago"
-        />
-      </FadeIn>
-      <FadeIn delay={400}>
-        <InstagramPost
-          id="post7"
-          imageUrl="/api/placeholder/400/400"
-          caption="Volunteer teams distributing food packages during the pandemic. Together we can overcome any challenge. #CommunitySupport"
-          likes={145}
-          timestamp="3 weeks ago"
-        />
-      </FadeIn>
-      <FadeIn delay={450}>
-        <InstagramPost
-          id="post8"
-          imageUrl="/api/placeholder/400/400"
-          caption="Teacher training program in session. Equipping educators with new skills to improve learning outcomes. #QualityEducation"
-          likes={78}
-          timestamp="3 weeks ago"
-        />
-      </FadeIn>
+<div className="mt-12 bg-white rounded-xl shadow-lg p-6 w-full">
+  <h3 className="text-xl font-bold mb-4 text-center text-gray-800">Payment Methods</h3>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-orange-50 p-5 rounded-lg border border-orange-200">
+      <h4 className="font-bold text-orange-600 mb-3 flex items-center">
+        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+          <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
+        </svg>
+        M-PESA Paybill
+      </h4>
+      <ul className="space-y-2">
+        <li className="flex justify-between">
+          <span className="text-gray-600">Business Number:</span>
+          <span className="font-medium">880100</span>
+        </li>
+        <li className="flex justify-between">
+          <span className="text-gray-600">Account Number:</span>
+          <span className="font-medium">PAYHIFIVE</span>
+        </li>
+      </ul>
     </div>
-
-    <div className="text-center mt-12">
-      <a 
-        href="https://www.instagram.com/highfive_initiative/" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center"
-      >
-        <FaInstagram className="mr-2" size={20} />
-        Follow Us on Instagram
-      </a>
+    
+    <div className="bg-orange-50 p-5 rounded-lg border border-orange-200">
+      <h4 className="font-bold text-orange-600 mb-3 flex items-center">
+        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+        </svg>
+        Bank Transfer
+      </h4>
+      <ul className="space-y-2">
+        <li className="flex justify-between">
+          <span className="text-gray-600">Bank Account:</span>
+          <span className="font-medium">1000632578</span>
+        </li>
+        <li className="flex justify-between">
+          <span className="text-gray-600">Account Name:</span>
+          <span className="font-medium">HI FIVE INITIATIVE (NCBA)</span>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
+
+<div className="mt-12 bg-white rounded-xl shadow-lg p-6 w-full">
+  <h3 className="text-xl font-bold mb-4 text-center text-gray-800">How You Can Help</h3>
+  
+  <div className="space-y-6">
+    <div className="flex items-start">
+      <div className="bg-orange-100 p-2 rounded-full text-orange-500 mr-4">
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+        </svg>
+      </div>
+      <div>
+        <h4 className="font-bold text-gray-800 mb-1">Sponsor a Child</h4>
+        <p className="text-gray-600">Help cover a child&apos;s daycare costs for a month.</p>
+      </div>
+    </div>
+    
+    <div className="flex items-start">
+      <div className="bg-orange-100 p-2 rounded-full text-orange-500 mr-4">
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+        </svg>
+      </div>
+      <div>
+        <h4 className="font-bold text-gray-800 mb-1">One-Time Donations</h4>
+        <p className="text-gray-600">Your contribution will directly support the running of our impact projects.</p>
+      </div>
+    </div>
+    
+    <div className="flex items-start">
+      <div className="bg-orange-100 p-2 rounded-full text-orange-500 mr-4">
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+        </svg>
+      </div>
+      <div>
+        <h4 className="font-bold text-gray-800 mb-1">Impact Donations</h4>
+        <p className="text-gray-600">Big donations to help us scale faster and reach more communities.</p>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
 
         {/* Newsletter Section */}
@@ -703,10 +670,16 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <Link href="/" className="text-2xl font-bold text-white flex items-center mb-4">
-                <span className="mr-2 bg-orange-500 p-1 rounded-lg">🖐️</span>
-                High Five
-              </Link>
+            <Link href="/" className="text-2xl font-bold text-orange-500 flex items-center">
+              <Image 
+              src="/images/logo2.png"  
+              alt="High Five Initiative" 
+              width={40} 
+              height={40} 
+              className="mr-2"
+              />
+              <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-transparent bg-clip-text">High Five</span>
+            </Link>
               <p className="mb-4">
                 Creating meaningful social impact through various campaigns and programs across Africa.
               </p>
